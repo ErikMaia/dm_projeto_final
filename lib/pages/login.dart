@@ -26,22 +26,30 @@ class _LoginState extends State<Login> {
               'login',
             ),
             TextField(
+              decoration: const InputDecoration(
+                label: Text('email'),
+              ),
               controller: _email,
             ),
             const SizedBox(height: 20),
             TextField(
+              decoration: const InputDecoration(
+                label: Text('password'),
+              ),
               controller: _password,
             ),
             const SizedBox(height: 50),
             ButtonDefault(
-                text: 'Loguin',
+                text: 'Login',
                 onPress: () {
                   Navigator.of(context).pushNamed('reservation');
                 }),
             const SizedBox(height: 20),
-            ButtonDefault(text: 'Registrar', onPress: () {
-              Navigator.of(context).pushNamed('register');
-            })
+            ButtonDefault(
+                text: 'Registrar',
+                onPress: () {
+                  Navigator.of(context).pushNamed('register');
+                })
           ],
         )),
       ),

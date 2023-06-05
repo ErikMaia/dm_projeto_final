@@ -12,7 +12,7 @@ class Reservation extends StatelessWidget {
       drawer: DrawerDefault(),
       // ignore: avoid_unnecessary_containers
       body: Padding(
-        padding: const EdgeInsets.all(30),
+        padding: const EdgeInsets.all(20),
         child: ListView(children: [
           TravelTile(
             title: 'Foz do iguaçu',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_final/widget/drawer_default.dart';
 
 class Tavel extends StatelessWidget {
   const Tavel({super.key});
@@ -7,6 +8,7 @@ class Tavel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Criação de Viagens')),
+      drawer: DrawerDefault(),
       // ignore: avoid_unnecessary_containers
       body: Container(),
     );

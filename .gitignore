@@ -47,3 +47,4 @@ app.*.map.json
 /macos
 /ios
 /web
+firebase_options.dart

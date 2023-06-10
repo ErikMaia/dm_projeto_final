@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using api.DataBase;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers;
@@ -9,5 +10,10 @@ namespace api.Controllers;
 [Route("api/[controller]")]
 public class TravelController : ControllerBase
 {
+    private Db _context;
 
+    public TravelController(Db context)
+    {
+        _context = context;
+    }
 }

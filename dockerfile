@@ -1,13 +1,15 @@
-# Use a imagem base do SDK do .NET para construir o aplicativo
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+# Define a imagem base
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /app
 
-# Copie os arquivos do projeto para o contêiner
-COPY ./api ./
+# Copia os arquivos do projeto e restaura as dependências
+COPY ./api/ ./
+RUN dotnet restore
 
+RUN dotnet tool install --global dotnet-ef --version 7.0.5
 
-RUN dotnet ef migrations add Initial
+ENV PATH="$PATH:/root/.dotnet/tools"
 
+RUN dotnet-ef migrations add InitialCreate2
 
-# Execute as migrações
-ENTRYPOINT [ "dotnet", "ef", "database", "update"]
+ENTRYPOINT ["dotnet-ef", "database", "update"]

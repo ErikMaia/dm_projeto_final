@@ -16,4 +16,14 @@ public class TravelController : ControllerBase
     {
         _context = context;
     }
+
+    [HttpPost]
+    public ActionResult Create(){
+        return Ok();
+    }
+
+    [HttpGet]
+    public ActionResult Index(){
+        return Ok(_context.Travel!.ToList());
+    }
 }

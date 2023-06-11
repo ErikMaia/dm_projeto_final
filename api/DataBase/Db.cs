@@ -10,9 +10,14 @@ public class Db : DbContext
     public DbSet<UserModel>? Users { get; set; }
 
     
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Server=sqldata;Database=NOME_DO_BANCO_DE_DADOS;User Id=USUARIO;Password=SENHA;");
+        var serverVersion = new MySqlServerVersion(new Version(8, 0, 31)); // Especifique a versão correta do servidor MySQL aqui
+
+        optionsBuilder.UseMySql("Server=database;Port=3306;Database=tarefas;User=root;Password=tarefas;",
+            serverVersion,
+            options => options.EnableRetryOnFailure());
     }
 }
 

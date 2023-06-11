@@ -1,6 +1,6 @@
 namespace api.DTOs;
 
-public class TravelDTO
+public class TravelDTO:ReservationDTO
 {
     
 }

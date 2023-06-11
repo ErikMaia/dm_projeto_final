@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "pv+6IiBbX6Jq3JT/4yc8OBgdRat/DH+90SHKg8CYSTvnGx6c3HQ293Isz37O1Rwyov8OLm4PxVHT/oVorQYKmg==",
+  "dgSpecHash": "dSiBFeRFLLIByw8PmQ1DCqqAEEO0rnBzREw/UsYdaYdBU+Po5RJvDwt5HlYCNHGAzOh9hT3D+/7uuuCrTgpZqg==",
   "success": true,
   "projectFilePath": "/home/erik/projetos/flutter/projeto_final/api/api.csproj",
   "expectedPackageFiles": [
@@ -44,6 +44,8 @@
     "/home/erik/.nuget/packages/microsoft.win32.registry/5.0.0/microsoft.win32.registry.5.0.0.nupkg.sha512",
     "/home/erik/.nuget/packages/microsoft.win32.systemevents/5.0.0/microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "/home/erik/.nuget/packages/mono.texttemplating/2.2.1/mono.texttemplating.2.2.1.nupkg.sha512",
+    "/home/erik/.nuget/packages/mysqlconnector/2.2.5/mysqlconnector.2.2.5.nupkg.sha512",
+    "/home/erik/.nuget/packages/pomelo.entityframeworkcore.mysql/7.0.0/pomelo.entityframeworkcore.mysql.7.0.0.nupkg.sha512",
     "/home/erik/.nuget/packages/swashbuckle.aspnetcore/6.4.0/swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "/home/erik/.nuget/packages/swashbuckle.aspnetcore.swagger/6.4.0/swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
     "/home/erik/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.4.0/swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",

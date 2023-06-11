@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.DataBase;
+using api.DTOs;
+using api.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers;
@@ -19,11 +21,20 @@ public class ReservationController : ControllerBase
     }
     [HttpGet]
     public ActionResult Index(){
-        return Ok();
+        var data = _context.Reservation!.ToList();
+        return Ok(data);
     }
 
     [HttpPost]
-    public ActionResult Create(){
+    public ActionResult Create(ReservationDTO dto){
+        var model = new ReservationModel(){
+            positionDestination = _context.Local!.Find(dto.positionDestination!.LocalId),
+            endDate = dto.endDate,
+            positionOrigen = _context.Local!.Find(dto.positionOrigen!.LocalId),
+            startDate = dto.startDate,
+        };
+        _context.Reservation!.Add(model);
+        _context.SaveChanges();
         return Ok();
     }
 

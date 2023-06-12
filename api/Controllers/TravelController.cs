@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers;
 [ApiController]
-[Route("api/[controller]")]
+[Route("[controller]")]
 public class TravelController : ControllerBase
 {
     private Db _context;
@@ -17,13 +17,16 @@ public class TravelController : ControllerBase
         _context = context;
     }
 
-    [HttpPost]
-    public ActionResult Create(){
-        return Ok();
-    }
-
     [HttpGet]
     public ActionResult Index(){
         return Ok(_context.Travel!.ToList());
+    }
+
+    [HttpGet("{id}")]
+    public ActionResult Find(int id){
+        var travel = _context.Travel!.Find(id);
+        if(travel != null)
+            return Ok();
+        return NotFound();
     }
 }

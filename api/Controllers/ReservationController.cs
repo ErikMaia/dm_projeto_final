@@ -19,27 +19,51 @@ public class ReservationController : ControllerBase
     {
         _context = context;
     }
-    [HttpGet]
-    public ActionResult Index(){
-        var data = _context.Reservation!.ToList();
-        return Ok(data);
+    [HttpGet("{id}")]
+    public ActionResult Index(int id)
+    {
+        var reservation = _context.Reservation!
+            .Where<ReservationModel>(res => res.User!.UserId == id)
+            .ToList();
+
+        return Ok(reservation);
     }
 
     [HttpPost]
-    public ActionResult Create(ReservationDTO dto){
-        var model = new ReservationModel(){
-            positionDestination = _context.Local!.Find(dto.positionDestination!.LocalId),
-            endDate = dto.endDate,
-            positionOrigen = _context.Local!.Find(dto.positionOrigen!.LocalId),
-            startDate = dto.startDate,
+    public ActionResult Create(ReservationDTO dto)
+    {
+        var model = new ReservationModel()
+        {
+            TravelId = _context.Travel!.Find(dto.TravelId!),
+            User = _context.Users!.Find(dto.User!.UserId)
         };
         _context.Reservation!.Add(model);
         _context.SaveChanges();
         return Ok();
     }
 
-    [HttpDelete("[controller]/{id}")]
-    public ActionResult Delete(int id){
-        return Ok();
+    [HttpGet("{id}/{idReserve}")]
+    public IActionResult Find(int id, int idReserve)
+    {
+        var reservation = _context.Reservation!.FirstOrDefault(r => r.User != null && r.User.UserId == id && r.TravelId!.TravelId == idReserve);
+        if (reservation != null)
+            return Ok(reservation);
+        return NotFound();
+    }
+
+    [HttpDelete("{id}")]
+    public ActionResult Delete(int id)
+    {
+
+        try
+        {
+            var reserva = _context.Reservation!.Find(id);
+            _context.Reservation.Remove(reserva!);
+            return Ok();
+        }
+        catch (Exception)
+        {
+            return NotFound();
+        }
     }
 }

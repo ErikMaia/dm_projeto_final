@@ -22,9 +22,8 @@ public class ReservationController : ControllerBase
     [HttpGet("{id}")]
     public ActionResult Index(int id)
     {
-        var reservation = _context.Reservation!
-            .Where<ReservationModel>(res => res.User!.UserId == id)
-            .ToList();
+        var reservation = _context.Reservation!;
+        reservation.FirstOrDefault(r => r.TravelId!.TravelId != id);
 
         return Ok(reservation);
     }
@@ -34,18 +33,22 @@ public class ReservationController : ControllerBase
     {
         var model = new ReservationModel()
         {
-            TravelId = _context.Travel!.Find(dto.TravelId!),
-            User = _context.Users!.Find(dto.User!.UserId)
+           
         };
         _context.Reservation!.Add(model);
         _context.SaveChanges();
         return Ok();
     }
-
+    
     [HttpGet("{id}/{idReserve}")]
     public IActionResult Find(int id, int idReserve)
     {
-        var reservation = _context.Reservation!.FirstOrDefault(r => r.User != null && r.User.UserId == id && r.TravelId!.TravelId == idReserve);
+        var reservation = _context.Reservation!
+            .FirstOrDefault(r => 
+                r.User != null && 
+                r.User.UserId == id && 
+                r.TravelId!.TravelId == idReserve
+            );
         if (reservation != null)
             return Ok(reservation);
         return NotFound();

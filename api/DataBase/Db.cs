@@ -1,3 +1,4 @@
+using System;
 using api.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,8 +9,6 @@ public class Db : DbContext
     public DbSet<ReservationModel>? Reservation { get; set; }
     public DbSet<TravelModel>? Travel { get; set; }
     public DbSet<UserModel>? Users { get; set; }
-
-    
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

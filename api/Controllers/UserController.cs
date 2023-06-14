@@ -26,7 +26,7 @@ public class UserController : Controller
             Name = dto.Name,
             Email = dto.Email,
             Passwords = dto.Passwords,
-            Age = dto.Age,
+            Age = dto.Age
         };
 
         try

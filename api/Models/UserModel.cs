@@ -18,6 +18,6 @@ public class UserModel
     
     [Required]
     public int? Age { get; set; }
-    
-    public string? Card { get; set; }
+
+    public List<ReservationModel>? Reservations { get; set; }
 }

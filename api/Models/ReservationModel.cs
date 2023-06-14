@@ -7,13 +7,8 @@ public class ReservationModel
 {
     [Key]
     public int? ReservationId { get; set; }
-    public DateTime? startDate { get; set; }
-    public DateTime? endDate { get; set; }
+    
+    public TravelModel? TravelId { get; set; }
 
-    [Required]
-    public LocalModel? positionOrigen { get; set; }
-
-    [Required]
-    public LocalModel? positionDestination { get; set; }
-
+    public UserModel? User { get; set; }
 }

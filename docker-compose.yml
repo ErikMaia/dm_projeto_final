@@ -5,7 +5,7 @@ services:
     container_name: database
     restart: always
     ports:
-      - 3307:3306
+      - 3306:3306
   api:
     build: api
     container_name: api

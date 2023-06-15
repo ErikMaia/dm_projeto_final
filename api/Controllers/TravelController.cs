@@ -21,14 +21,15 @@ public class TravelController : ControllerBase
 
     [HttpGet]
     public ActionResult Index(){
-        return Ok(_context.Travel!.ToList());
+        var travel = _context.Travel!.ToList();
+        return Ok(travel);
     }
 
     [HttpGet("{id}")]
     public ActionResult Find(int id){
         var travel = _context.Travel!.Find(id);
         if(travel != null)
-            return Ok();
+            return Ok(travel);
         return NotFound();
     }
     [HttpPost]
@@ -38,7 +39,7 @@ public class TravelController : ControllerBase
             {      
                 var travel = new TravelModel(){
                     endDate = dto.endDate,
-                    positionDestination = _context.Local!.Find(dto.positionDestination!.LocalId),
+                    positionDestination = _context.Local!.Find(dto.positionDestination),
                     startDate = dto.startDate,
                 };
                 _context.Travel!.Add(travel);

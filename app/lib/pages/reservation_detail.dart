@@ -1,111 +1,87 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:projeto_final/styles/styles.dart';
-
 import 'package:projeto_final/widget/drawer_default.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-class ReservationDetails extends StatefulWidget {
+import 'package:projeto_final/widget/passaport.dart';
+
+import '../styles/styles.dart';
+
+class ReservationDetails extends StatelessWidget {
   const ReservationDetails({
     Key? key,
+    required this.name,
+    required this.origen,
+    required this.destination,
+    required this.start,
+    required this.end,
   }) : super(key: key);
-
-  @override
-  State<ReservationDetails> createState() => _ReservationDetailsState();
-}
-
-class _ReservationDetailsState extends State<ReservationDetails> {
-  String _title = "";
-
-  String _description = "";
-
-  String _imageUrl = "";
-
-  DateTime _startDate = DateTime.now();
-
-  DateTime _endDate = DateTime.now();
-
-  BuildContext? _context;
-
-  Future<void> setInialState() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    setState(() {
-      _title = prefs.getString('title')!;
-      _description = prefs.getString('description')!;
-      _imageUrl = prefs.getString('imageUrl')!;
-    });
-  }
-
-  Future<void> _selectInitialDate() async {
-    final DateTime? picked = await showDatePicker(
-      context: _context!,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2010),
-      lastDate: DateTime(2030),
-    );
-    if (picked != null && picked != _startDate) {
-      setState(() {
-        _startDate = picked;
-      });
-      // Salvar a data selecionada pelo usuário
-    }
-  }
-
-  Future<void> _selectFinalDate() async {
-    final DateTime? picked = await showDatePicker(
-      context: _context!,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2010),
-      lastDate: DateTime(2030),
-    );
-    if (picked != null && picked != _endDate) {
-      setState(() {
-        _endDate = picked;
-      });
-      // Salvar a data selecionada pelo usuário
-    }
-  }
-
+  final String name;
+  final String origen;
+  final String destination;
+  final DateTime start;
+  final DateTime end;
   @override
   Widget build(BuildContext context) {
-    _context = context;
-    setInialState();
     return Scaffold(
-      appBar: AppBar(title: const Text('Detalhes de reservas')),
+      appBar: AppBar(),
       drawer: DrawerDefault(),
       body: ListView(
         children: [
-          SizedBox(
-            width: MediaQuery.of(context).size.width,
-            height: 300,
-            child: Stack(children: [
-              Image.network(
-                _imageUrl,
-                fit: BoxFit.fill,
-              ),
-              Container(color: const Color.fromRGBO(0, 0, 0, .5)),
-              Center(
-                  child: Text(
-                _title,
-                style: Styles.textBold.copyWith(color: Colors.white70),
-              )),
-            ]),
+          Text(
+            "Passagens",
+            style: Styles.textBold,
           ),
-          Text(_description),
-          ElevatedButton(
-            onPressed: _selectInitialDate,
-            child: const Text(
-              "Selecionar data Inicial",
-            ),
+          Passaport(
+            name: name,
+            origen: origen,
+            start: start,
+            destiny: destination,
           ),
-          ElevatedButton(
-            onPressed: _selectFinalDate,
-            child: const Text(
-              "Selecionar data de Volta",
-            ),
+          Text(
+            "Reserva de Hotel",
+            style: Styles.textBold,
           ),
-          Text(r"R$ 2000,00",style: Styles.moneyText.copyWith(),)
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text('Responsavel'),
+              Text(name),
+            ],
+          ),
+          const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [Text('Local'), Text('Simples')]),
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('Hóspede'),
+              Text('1 Adulto'),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text('Data de Entrada'),
+              Text('${start.day}/${start.month}/${start.year}'),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text('Data de Saída'),
+              Text('${end.day}/${end.month}/${end.year}'),
+            ],
+          ),
+          Text(
+            "Passagens de Retorno",
+            style: Styles.textBold,
+          ),
+          Passaport(
+            name: name,
+            origen: destination,
+            start: end,
+            destiny: origen,
+          ),
         ],
       ),
     );

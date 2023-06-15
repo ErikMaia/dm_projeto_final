@@ -19,13 +19,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Viagens',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
         
       ),
-      home: const Login(),
+      home: const Rating(),
       routes: {
         // registro
         'register': (context) => const Register(),
@@ -34,13 +35,11 @@ class MyApp extends StatelessWidget {
         // Busca de viagens
         'travel': (context) => const Tavel(),
         // Reserva de viagens
-        'reservation': (context) => Reservation(),
+        'reservation': (context) => const Reservation(),
         // Gerenciamento de reservas
         'travel_management': (context) => const TavelManagement(),
         // Rastreamento de viagens
         'travel_tracking': (context) => const TravelTracking(),
-        // Compartilhamento de viagens: botão
-
         // Avaliação de viagens
         'rating': (context) => const Rating()
       },

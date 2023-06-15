@@ -4,10 +4,9 @@ select * from Users;
 desc Reservation;
 desc Travel;
 desc Local;
-delete from Local;
 insert into Local(Name,Description,image) values(
 	'Foz do igualçu',
-	'Foz do Iguaçu é uma cidade localizada na região sul do Brasil, no estado do Paraná. É conhecida por abrigar uma das maiores atrações naturais do mundo, as Cataratas do Iguaçu, que são um conjunto de quedas d\'água de tirar o fôlego. Além disso, a cidade é marcada por sua diversidade cultural, com influências do Brasil, Paraguai e Argentina, já que faz fronteira com esses dois países.',
+	'Foz do Iguaçu é uma cidade localizada na região sul do Brasil, no estado do Paraná. É conhecida por abrigar uma das maiores atrações naturais do mundo, as Cataratas do Iguaçu, que são um conjunto de quedas dágua de tirar o fôlego. Além disso, a cidade é marcada por sua diversidade cultural, com influências do Brasil, Paraguai e Argentina, já que faz fronteira com esses dois países.',
 	'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/03/9b/2d/ce/foz-do-iguacu.jpg?w=700&h=500&s=1'
 );
 insert into Local(Name,Description,image) values(
@@ -27,7 +26,22 @@ insert into Local(Name,Description,image) values(
 );
 
 select * from Local;
-insert into Travel(starDate,endDate,positonOrigenLocalId,positionDestinationLocalId) 
-values('2011-12-18 13:17:17','2011-12-18 13:17:17', 1,2);
-select * from Travel;
+desc Travel;
+delete from Travel where TravelId = 1;
+insert into Travel(positionDestinationLocalId,price,startDate,endDate) values(1,2000,'2023-06-14T04:09:51','2023-07-14T04:09:51');
+insert into Travel(positionDestinationLocalId,price,startDate,endDate) values(2,5000,'2023-06-14T04:09:51','2023-07-14T04:09:51');
+insert into Travel(positionDestinationLocalId,price,startDate,endDate) values(3,3000,'2023-07-14T04:09:51','2023-07-14T04:09:51');
+insert into Travel(positionDestinationLocalId,price,startDate,endDate) values(1,2500,'2023-12-14T04:09:51','2024-01-14T04:09:51');
+insert into Travel(positionDestinationLocalId,price,startDate,endDate) values(4,3000,'2023-07-14T04:09:51','2023-07-14T04:09:51');
+insert into Travel(positionDestinationLocalId,price,startDate,endDate) values(4,1000,'2024-07-14T04:09:51','2024-12-14T04:09:51');
+insert into Travel(positionDestinationLocalId,price,startDate,endDate) values(4,2000,'2025-07-14T04:09:51','2025-08-14T04:09:51');
 
+select * from Travel;
+desc Users;
+delete from Users;
+insert into Users(Name,Email,Passwords,Age) values('Admin', 'adm', 'admin', 1);
+select * from Users;
+
+desc Reservation;
+insert into Reservation(TravelId1,UsersId) values(2,1);
+select * from Reservation;

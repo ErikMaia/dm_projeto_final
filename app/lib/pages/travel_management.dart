@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_final/widget/drawer_default.dart';
 import 'package:projeto_final/widget/travel_tile.dart';
-
-import 'reservation_detail.dart';
+import 'travel_manegement_detail.dart';
 
 class TavelManagement extends StatelessWidget {
   const TavelManagement({super.key});
@@ -20,7 +19,7 @@ class TavelManagement extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                      builder: (context) => const ReservationDetails()),
+                      builder: (context) => const TravelManegegementDetail()),
                 );
               },
               title: 'Foz',

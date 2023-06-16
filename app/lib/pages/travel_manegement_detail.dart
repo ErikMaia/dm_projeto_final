@@ -4,6 +4,8 @@ import 'package:projeto_final/styles/styles.dart';
 import 'package:projeto_final/widget/drawer_default.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../Data/datasources/reservation_data.dart';
+
 class TravelManegegementDetail extends StatefulWidget {
   const TravelManegegementDetail({
     Key? key,
@@ -15,74 +17,45 @@ class TravelManegegementDetail extends StatefulWidget {
 }
 
 class _TravelManegegementDetailState extends State<TravelManegegementDetail> {
+  int _id = 0;
   String _title = "";
-
   String _description = "";
-
   String _imageUrl = "";
-
-  DateTime _startDate = DateTime.now();
-
-  DateTime _endDate = DateTime.now();
-
   BuildContext? _context;
-
   Future<void> setInialState() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     setState(() {
+      _id = prefs.getInt('revervation_id')!;
       _title = prefs.getString('title')!;
       _description = prefs.getString('description')!;
       _imageUrl = prefs.getString('imageUrl')!;
     });
   }
 
-  Future<void> _selectInitialDate() async {
-    final DateTime? picked = await showDatePicker(
-      context: _context!,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2010),
-      lastDate: DateTime(2030),
-    );
-    if (picked != null && picked != _startDate) {
-      setState(() {
-        _startDate = picked;
-      });
-      // Salvar a data selecionada pelo usuário
-    }
+  void _delete() {
+    ReservationData.remove(_id);
+    Navigator.of(_context!).popAndPushNamed('travel_management');
   }
 
-  Future<void> _selectFinalDate() async {
-    final DateTime? picked = await showDatePicker(
-      context: _context!,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2010),
-      lastDate: DateTime(2030),
-    );
-    if (picked != null && picked != _endDate) {
-      setState(() {
-        _endDate = picked;
-      });
-      // Salvar a data selecionada pelo usuário
-    }
-  }
+  
 
   @override
   Widget build(BuildContext context) {
     _context = context;
     setInialState();
     return Scaffold(
-      appBar: AppBar(title: const Text('Detalhes de reservas')),
+      appBar: AppBar(title: const Text('Gerenciar Viagens')),
       drawer: DrawerDefault(),
       body: ListView(
         children: [
           SizedBox(
             width: MediaQuery.of(context).size.width,
-            height: 300,
+            height: 200,
             child: Stack(children: [
               Image.network(
                 _imageUrl,
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
               ),
               Container(color: const Color.fromRGBO(0, 0, 0, .5)),
               Center(
@@ -92,24 +65,24 @@ class _TravelManegegementDetailState extends State<TravelManegegementDetail> {
               )),
             ]),
           ),
-          Text(_description),
-          ElevatedButton(
-            onPressed: _selectInitialDate,
-            child: const Text(
-              "Selecionar data Inicial",
-            ),
-          ),
+          SizedBox(height: 120 ,child: Text(_description),),
           SizedBox(
-            height: 80,
+            
             child: Text(
               r"R$ 2000,00",
-              style: Styles.moneyText.copyWith(),
+              style: Styles.moneyText,
             ),
           ),
           ElevatedButton(
-            onPressed: _selectFinalDate,
+            onPressed: _delete,
             child: const Text(
-              "Selecionar data de Volta",
+              "Apagar",
+            ),
+          ),
+          ElevatedButton(
+            onPressed: _delete,
+            child: const Text(
+              "Reembolsado",
             ),
           ),
           

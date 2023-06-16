@@ -9,9 +9,9 @@ class UserData {
   static Future<bool> userLogin(String email, String password) async {
     final response = await http.post(
       Uri.parse('${Constants.userUrl}/login'),
-      body: jsonEncode({
+      body: jsonEncode(<String, dynamic>{
         'email': email,
-        'password': password,
+        'passwords': password,
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -30,19 +30,19 @@ class UserData {
   }
 
   static Future<bool> userRegister({
-    required String firstName,
-    required String lastName,
+    required String name,
     required String email,
-    required String password,
+    required String passwords,
+    required int age,
   }) async {
     final response = await http.post(
       Uri.parse('${Constants.userUrl}/register'),
-      body: jsonEncode({
-        'firstName': firstName,
-        'lastName': lastName,
-        'email': email,
-        'password': password,
-      }),
+      body: jsonEncode(UserModel(
+        email: email,
+        passwords: passwords,
+        name: name,
+        age: age,
+      )),
       headers: {'Content-Type': 'application/json'},
     );
 

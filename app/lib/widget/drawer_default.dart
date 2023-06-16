@@ -16,6 +16,9 @@ class DrawerDefault extends StatelessWidget {
     Navigator.of(_context).popAndPushNamed('travel_management');
   }
 
+  void _navigateToRaiting() {
+    Navigator.of(_context).popAndPushNamed('rating');
+  }
   // void _navigateToTracking() {
   //   Navigator.of(_context).popAndPushNamed('travel_tracking');
   // }
@@ -42,6 +45,10 @@ class DrawerDefault extends StatelessWidget {
           TextButton(
             onPressed: _navigateToReservation,
             child: const Text("Reservas"),
+          ),
+          TextButton(
+            onPressed: _navigateToRaiting,
+            child: const Text("Raiting"),
           ),
         ],
       ),

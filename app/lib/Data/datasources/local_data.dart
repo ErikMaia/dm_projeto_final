@@ -28,7 +28,7 @@ class LocalData {
     if (response.statusCode == 200) {
       final List<dynamic> responseBody = json.decode(response.body);
       allReserve =
-          responseBody.map((reserve) => LocalModel.fromJson(reserve)).toList();
+          responseBody.map((reserve) => LocalModel.fromMap(reserve)).toList();
     }
     return allReserve;
   }

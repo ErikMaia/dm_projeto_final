@@ -1,37 +1,70 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_final/Data/datasources/travel_data.dart';
+import 'package:projeto_final/Data/models/local_model.dart';
+import 'package:projeto_final/Data/models/travel_model.dart';
 import 'package:projeto_final/pages/travel_detail.dart';
 import 'package:projeto_final/widget/drawer_default.dart';
 import 'package:projeto_final/widget/travel_tile.dart';
 
-class Tavel extends StatelessWidget {
+import '../Data/datasources/local_data.dart';
+
+class Tavel extends StatefulWidget {
   const Tavel({super.key});
+
+  @override
+  State<Tavel> createState() => _TavelState();
+}
+
+class _TavelState extends State<Tavel> {
+  List<TravelModel> _travels = [];
+  List<LocalModel> _locals = [];
+  Future<void> getTravel() async {
+    _travels = await TravelData.getAll();
+    _locals = await LocalData.getAll();
+
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getTravel();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Criação de Viagens')),
+      appBar: AppBar(title: const Text('Viagens')),
       drawer: DrawerDefault(),
       // ignore: avoid_unnecessary_containers
-      body: 
-      Padding(
+      body: Padding(
         padding: const EdgeInsets.all(8),
-        child: ListView(
-          children: [
-            TravelTile(
+        child: ListView.builder(
+          itemCount: _travels.length,
+          itemBuilder: (context, index) {
+            var local = _locals
+                .where((l) => (l.localId == _travels[index].travelId))
+                .first;
+            return TravelTile(
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                      builder: (context) => const TravelDetail()),
+                    builder: (context) => TravelDetail(
+                      description: local.description!,
+                      image: local.image!,
+                      context: context,
+                      start: _travels[index].startDate,
+                    ),
+                  ),
                 );
               },
-              title: 'Foz',
-              description: "description",
-              imageUrl:
-                  'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/03/9b/2d/ce/foz-do-iguacu.jpg?w=700&h=500&s=1',
-            )
-          ],
+              title: local.name!,
+              description: local.description!,
+              imageUrl: local.image!,
+            );
+          },
         ),
-      )
+      ),
     );
   }
 }

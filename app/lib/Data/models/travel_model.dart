@@ -3,17 +3,18 @@ import 'dart:convert';
 
 class TravelModel {
   int? travelId;
-  DateTime? startDate;
-  DateTime? endDate;
+  DateTime startDate;
+  DateTime endDate;
   int? positionOrigen;
   int? positionDestination;
   TravelModel({
     this.travelId,
-    this.startDate,
-    this.endDate,
-    this.positionOrigen,
-    this.positionDestination,
+    required this.startDate,
+    required this.endDate,
+    required this.positionOrigen,
+    required this.positionDestination,
   });
+  
 
   TravelModel copyWith({
     int? travelId,
@@ -34,8 +35,8 @@ class TravelModel {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'travelId': travelId,
-      'startDate': startDate?.millisecondsSinceEpoch,
-      'endDate': endDate?.millisecondsSinceEpoch,
+      'startDate': startDate.millisecondsSinceEpoch,
+      'endDate': endDate.millisecondsSinceEpoch,
       'positionOrigen': positionOrigen,
       'positionDestination': positionDestination,
     };
@@ -44,8 +45,8 @@ class TravelModel {
   factory TravelModel.fromMap(Map<String, dynamic> map) {
     return TravelModel(
       travelId: map['travelId'] != null ? map['travelId'] as int : null,
-      startDate: map['startDate'] != null ? DateTime.fromMillisecondsSinceEpoch(map['startDate'] as int) : null,
-      endDate: map['endDate'] != null ? DateTime.fromMillisecondsSinceEpoch(map['endDate'] as int) : null,
+      startDate: DateTime.parse(map['startDate'] ),
+      endDate: DateTime.parse(map['endDate'] ),
       positionOrigen: map['positionOrigen'] != null ? map['positionOrigen'] as int : null,
       positionDestination: map['positionDestination'] != null ? map['positionDestination'] as int : null,
     );
@@ -80,4 +81,4 @@ class TravelModel {
       positionOrigen.hashCode ^
       positionDestination.hashCode;
   }
-  }
+}

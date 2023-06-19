@@ -7,4 +7,5 @@ class Styles {
       const TextStyle(color: Colors.black87, fontSize: 30);
   static TextStyle moneyText =
       textBold.copyWith(color: Colors.lightGreenAccent);
+
 }

@@ -1,6 +1,5 @@
 use tarefas;
 show tables;
-select * from Users;
 desc Reservation;
 desc Travel;
 desc Local;
@@ -25,23 +24,5 @@ insert into Local(Name,Description,image) values(
     'https://www.costacruzeiros.com/content/dam/costa/inventory-assets/ports/RIO/c035_rio_de_janeiro.jpg'
 );
 
-select * from Local;
-desc Travel;
-delete from Travel where TravelId = 1;
-insert into Travel(positionDestinationLocalId,price,startDate,endDate) values(1,2000,'2023-06-14T04:09:51','2023-07-14T04:09:51');
-insert into Travel(positionDestinationLocalId,price,startDate,endDate) values(2,5000,'2023-06-14T04:09:51','2023-07-14T04:09:51');
-insert into Travel(positionDestinationLocalId,price,startDate,endDate) values(3,3000,'2023-07-14T04:09:51','2023-07-14T04:09:51');
-insert into Travel(positionDestinationLocalId,price,startDate,endDate) values(1,2500,'2023-12-14T04:09:51','2024-01-14T04:09:51');
-insert into Travel(positionDestinationLocalId,price,startDate,endDate) values(4,3000,'2023-07-14T04:09:51','2023-07-14T04:09:51');
-insert into Travel(positionDestinationLocalId,price,startDate,endDate) values(4,1000,'2024-07-14T04:09:51','2024-12-14T04:09:51');
-insert into Travel(positionDestinationLocalId,price,startDate,endDate) values(4,2000,'2025-07-14T04:09:51','2025-08-14T04:09:51');
-
-select * from Travel;
-desc Users;
-delete from Users;
-insert into Users(Name,Email,Passwords,Age) values('Admin', 'adm', 'admin', 1);
+select * from Local; 
 select * from Users;
-
-desc Reservation;
-insert into Reservation(TravelId1,UsersId) values(2,1);
-select * from Reservation;

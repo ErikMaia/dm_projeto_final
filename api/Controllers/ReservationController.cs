@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using api.DataBase;
 using api.DTOs;
 using api.Models;
@@ -23,7 +19,7 @@ public class ReservationController : ControllerBase
     public ActionResult Index(int id)
     {
         var reservation = _context.Reservation!;
-        reservation.FirstOrDefault(r => r.TravelId!.TravelId != id);
+        reservation.FirstOrDefault(r => r.Travel!.TravelId != id);
 
         return Ok(reservation);
     }
@@ -47,7 +43,7 @@ public class ReservationController : ControllerBase
             .FirstOrDefault(r => 
                 r.User != null && 
                 r.User.UserId == id && 
-                r.TravelId!.TravelId == idReserve
+                r.Travel!.TravelId == idReserve
             );
         if (reservation != null)
             return Ok(reservation);

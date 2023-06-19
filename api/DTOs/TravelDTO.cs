@@ -9,4 +9,6 @@ public class TravelDTO
     public DateTime? endDate { get; set; }
     public int? positionDestination { get; set; }
 
+    public double price { get; set; }
+
 }

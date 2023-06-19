@@ -1,7 +1,3 @@
-using System;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using api.DataBase;
 using api.DTOs;
 using api.Models;
@@ -44,8 +40,10 @@ public class UserController : Controller
     }
 
     [HttpPost("login")]
-    public ActionResult Login(string username, string password)
+    public ActionResult Login(UserDTO dto)
     {
+        string username = dto.Email!; 
+        string password = dto.Passwords!;
         var user = _context.Users!.First((u) => u.Email == username && u.Passwords == password);
         return Ok(user);
     }

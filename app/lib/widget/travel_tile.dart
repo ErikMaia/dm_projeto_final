@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+
 // ignore: must_be_immutable
 class TravelTile extends StatelessWidget {
   final String title;
@@ -29,26 +30,21 @@ class TravelTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: navigate,
-      child: Row(
-        children: [
-          SizedBox(
-            width: 200,
-            child: Image.network(imageUrl, fit: BoxFit.fill),
+    return ListTile(
+        onTap: navigate,
+        leading: SizedBox(
+          width: 200,
+          child: Image.network(imageUrl, fit: BoxFit.fill),
+        ),
+        title: SizedBox(
+          width: 140,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(title),
+              Text(price != null ? "R\$ ${price.toString()}" : ''),
+            ],
           ),
-          SizedBox(
-            width: 140,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(title),
-                Text(price != null ? "R\$ ${price.toString()}" : ''),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
+        ));
   }
 }

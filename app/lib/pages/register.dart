@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:projeto_final/Data/datasources/user_data.dart';
 import 'package:projeto_final/widget/button_default.dart';
 
+import '../styles/styles.dart';
+
 class Register extends StatefulWidget {
   const Register({super.key});
 
@@ -31,52 +33,56 @@ class _RegisterState extends State<Register> {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(70),
-        child: Center(
-            child:
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          const Text('Registr'),
-          TextField(
-            controller: _name,
-            decoration: const InputDecoration(
-              label: Text('nome'),
-            ),
-          ),
-          // E-mail
-          TextField(
-            controller: _email,
-            decoration: const InputDecoration(
-              label: Text('email'),
-            ),
-          ),
-          Container(
-            height: 30,
-          ),
-          // Senha
-          TextField(
-            controller: _password,
-            obscureText: true,
-            decoration: const InputDecoration(
-              label: Text('password'),
-            ),
-          ),
+        child: ListView(
+          children: [
+            Center(
+                child:
+                    Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Text('Registrar', style: Styles.textBold,),
+              TextField(
+                controller: _name,
+                decoration: const InputDecoration(
+                  label: Text('nome'),
+                ),
+              ),
+              // E-mail
+              TextField(
+                controller: _email,
+                decoration: const InputDecoration(
+                  label: Text('email'),
+                ),
+              ),
+              Container(
+                height: 30,
+              ),
+              // Senha
+              TextField(
+                controller: _password,
+                obscureText: true,
+                decoration: const InputDecoration(
+                  label: Text('password'),
+                ),
+              ),
 
-          Container(
-            height: 30,
-          ),
-          // Cartão de crédito
-          TextField(
-              controller: _age,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(label: Text('Idade'))),
-          Container(
-            height: 50,
-          ),
-          ButtonDefault(
-              text: 'Criar',
-              onPress: () {
-                _send(context);
-              })
-        ])),
+              Container(
+                height: 30,
+              ),
+              // Cartão de crédito
+              TextField(
+                  controller: _age,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(label: Text('Idade'))),
+              Container(
+                height: 50,
+              ),
+              ButtonDefault(
+                  text: 'Criar',
+                  onPress: () {
+                    _send(context);
+                  })
+            ])),
+          ],
+        ),
       ),
     );
   }

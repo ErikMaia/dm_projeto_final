@@ -8,7 +8,7 @@ class TravelTracking extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Rastreamento de Viagens')),
-      drawer: DrawerDefault(),
+      drawer: const DrawerDefault(),
       // ignore: avoid_unnecessary_containers
       body: Container(),
     );

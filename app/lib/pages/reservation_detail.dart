@@ -24,7 +24,7 @@ class ReservationDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      drawer: DrawerDefault(),
+      drawer: const DrawerDefault(),
       body: ListView(
         children: [
           Text(

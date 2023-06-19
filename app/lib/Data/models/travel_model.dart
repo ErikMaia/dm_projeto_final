@@ -7,12 +7,14 @@ class TravelModel {
   DateTime endDate;
   int? positionOrigen;
   int? positionDestination;
+  double price;
   TravelModel({
     this.travelId,
     required this.startDate,
     required this.endDate,
     required this.positionOrigen,
     required this.positionDestination,
+    required this.price,
   });
   
 
@@ -22,6 +24,7 @@ class TravelModel {
     DateTime? endDate,
     int? positionOrigen,
     int? positionDestination,
+    double? price,
   }) {
     return TravelModel(
       travelId: travelId ?? this.travelId,
@@ -29,6 +32,7 @@ class TravelModel {
       endDate: endDate ?? this.endDate,
       positionOrigen: positionOrigen ?? this.positionOrigen,
       positionDestination: positionDestination ?? this.positionDestination,
+      price: price ?? this.price,
     );
   }
 
@@ -39,16 +43,18 @@ class TravelModel {
       'endDate': endDate.millisecondsSinceEpoch,
       'positionOrigen': positionOrigen,
       'positionDestination': positionDestination,
+      'price': price,
     };
   }
 
   factory TravelModel.fromMap(Map<String, dynamic> map) {
     return TravelModel(
       travelId: map['travelId'] != null ? map['travelId'] as int : null,
-      startDate: DateTime.parse(map['startDate'] ),
-      endDate: DateTime.parse(map['endDate'] ),
+      startDate: DateTime.parse(map['startDate']),
+      endDate: DateTime.parse(map['endDate']),
       positionOrigen: map['positionOrigen'] != null ? map['positionOrigen'] as int : null,
       positionDestination: map['positionDestination'] != null ? map['positionDestination'] as int : null,
+      price: double.parse(map['price'].toString()) ,
     );
   }
 
@@ -58,7 +64,7 @@ class TravelModel {
 
   @override
   String toString() {
-    return 'TravelModel(travelId: $travelId, startDate: $startDate, endDate: $endDate, positionOrigen: $positionOrigen, positionDestination: $positionDestination)';
+    return 'TravelModel(travelId: $travelId, startDate: $startDate, endDate: $endDate, positionOrigen: $positionOrigen, positionDestination: $positionDestination, price: $price)';
   }
 
   @override
@@ -70,7 +76,8 @@ class TravelModel {
       other.startDate == startDate &&
       other.endDate == endDate &&
       other.positionOrigen == positionOrigen &&
-      other.positionDestination == positionDestination;
+      other.positionDestination == positionDestination &&
+      other.price == price;
   }
 
   @override
@@ -79,6 +86,7 @@ class TravelModel {
       startDate.hashCode ^
       endDate.hashCode ^
       positionOrigen.hashCode ^
-      positionDestination.hashCode;
+      positionDestination.hashCode ^
+      price.hashCode;
   }
 }

@@ -44,46 +44,51 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      drawer: DrawerDefault(),
+      drawer: const DrawerDefault(),
       // ignore: avoid_unnecessary_containers
-      body: Padding(
-        padding: const EdgeInsets.only(top: 250, left: 50, right: 50),
-        child: Center(
-            child: Column(
-          children: [
-            Text(
-              'login',
-              style: Styles.textBold,
-            ),
-            TextField(
-              decoration: const InputDecoration(
-                label: Text('email'),
-              ),
-              controller: _email,
-            ),
-            const SizedBox(height: 20),
-            TextField(
-              decoration: const InputDecoration(
-                label: Text('password'),
-              ),
-              controller: _password,
-              obscureText: true,
-            ),
-            const SizedBox(height: 50),
-            ButtonDefault(text: 'Login', onPress: auth),
-            SizedBox(
-                height: 20,
-                child: Text(
-                  _error,
-                  style: TextStyle(color: Colors.red[600]),
-                )),
-            ButtonDefault(
-                text: 'Registrar',
-                onPress: () {
-                  Navigator.of(context).pushNamed('register');
-                })
-          ],
-        )),
+      body: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 150, left: 50, right: 50),
+            child: Center(
+                child: Column(
+              children: [
+                Text(
+                  'login',
+                  style: Styles.textBold,
+                ),
+                TextField(
+                  decoration: const InputDecoration(
+                    label: Text('email'),
+                  ),
+                  controller: _email,
+                ),
+                const SizedBox(height: 20),
+                TextField(
+                  decoration: const InputDecoration(
+                    label: Text('password'),
+                  ),
+                  controller: _password,
+                  obscureText: true,
+                ),
+                const SizedBox(height: 50),
+                ButtonDefault(text: 'Login', onPress: auth),
+                SizedBox(
+                    height: 20,
+                    child: Text(
+                      _error,
+                      style: TextStyle(color: Colors.red[600]),
+                    )),
+                ButtonDefault(
+                  text: 'Registrar',
+                  onPress: () {
+                    Navigator.of(context).pushNamed('register');
+                  },
+                )
+              ],
+            )),
+          ),
+        ],
       ),
     );
   }

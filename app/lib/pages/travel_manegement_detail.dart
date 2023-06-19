@@ -46,7 +46,7 @@ class _TravelManegegementDetailState extends State<TravelManegegementDetail> {
     setInialState();
     return Scaffold(
       appBar: AppBar(title: const Text('Gerenciar Viagens')),
-      drawer: DrawerDefault(),
+      drawer: const DrawerDefault(),
       body: ListView(
         children: [
           SizedBox(

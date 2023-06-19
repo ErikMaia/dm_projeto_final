@@ -7,22 +7,24 @@ class TravelTile extends StatelessWidget {
   final String title;
   final String description;
   final String imageUrl;
-  VoidCallback onPressed;
-  TravelTile({
+  final double? price;
+  final VoidCallback onPressed;
+  const TravelTile({
     Key? key,
     required this.title,
     required this.description,
     required this.imageUrl,
+    required this.price,
     required this.onPressed,
   }) : super(key: key);
-  
+
   Future<void> navigate() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('title', title);
     prefs.setString('description', description);
     prefs.setString('imageUrl', imageUrl);
     // ignore: use_build_context_synchronously
-    onPressed();    
+    onPressed();
   }
 
   @override
@@ -41,7 +43,7 @@ class TravelTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(title),
-                Text(description),
+                Text(price != null ? "R\$ ${price.toString()}" : ''),
               ],
             ),
           )

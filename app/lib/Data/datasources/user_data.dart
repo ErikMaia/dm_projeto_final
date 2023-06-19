@@ -20,11 +20,10 @@ class UserData {
 
     if (response.statusCode == 200) {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      var user = UserModel.fromMap(json.decode(response.body));
-      prefs.setInt('userId', user.userId!);
+      var user = response.body;
+      prefs.setString('userId', user);
       return true;
     } else {
-      //print('Falha no login');
       return false;
     }
   }

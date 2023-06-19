@@ -10,7 +10,7 @@ class TavelManagement extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Gerenciamento de Viagens')),
-      drawer: DrawerDefault(),
+      drawer: const DrawerDefault(),
       body: Padding(
         padding: const EdgeInsets.all(8),
         child: ListView(
@@ -26,6 +26,7 @@ class TavelManagement extends StatelessWidget {
               description: "description",
               imageUrl:
                   'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/03/9b/2d/ce/foz-do-iguacu.jpg?w=700&h=500&s=1',
+              price: null,
             )
           ],
         ),

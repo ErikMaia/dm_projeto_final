@@ -23,7 +23,7 @@ class _NoAuthState extends State<NoAuth> {
         title: const Text('Falha ao se autenticar'),
         
       ),
-      drawer: DrawerDefault(),
+      drawer: const DrawerDefault(),
       body: Center(
         child: SizedBox(
           width: 100,

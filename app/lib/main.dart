@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         
       ),
-      home: const Reservation(),
+      home: const Tavel(),
       routes: {
         // registro
         'register': (context) => const Register(),

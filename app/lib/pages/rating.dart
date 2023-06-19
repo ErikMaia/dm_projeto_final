@@ -23,7 +23,7 @@ class _RatingState extends State<Rating> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Avaliar')),
-      drawer: DrawerDefault(),
+      drawer: const DrawerDefault(),
       body: Scaffold(
         body: Stack(
           alignment: Alignment.center,

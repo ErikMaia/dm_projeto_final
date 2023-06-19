@@ -1,9 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: must_be_immutable
-class DrawerDefault extends StatelessWidget {
-  DrawerDefault({super.key});
+class DrawerDefault extends StatefulWidget {
+  const DrawerDefault({super.key});
+
+  @override
+  State<DrawerDefault> createState() => _DrawerDefaultState();
+}
+
+class _DrawerDefaultState extends State<DrawerDefault> {
   late BuildContext _context;
+
+  String _user = "";
+  @override
+  void initState() {
+    super.initState();
+    getUser();
+  }
+
+  Future<void> getUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _user = prefs.getString("userId")??'';
+    setState(() {});
+  }
+
+  Future<void> setUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString("userId", "");
+  }
+
   void _navigateToTravel() {
     Navigator.of(_context).popAndPushNamed('travel');
   }
@@ -19,10 +45,8 @@ class DrawerDefault extends StatelessWidget {
   void _navigateToRaiting() {
     Navigator.of(_context).popAndPushNamed('rating');
   }
-  // void _navigateToTracking() {
-  //   Navigator.of(_context).popAndPushNamed('travel_tracking');
-  // }
 
+  // void _navigateToTracking() {
   @override
   Widget build(BuildContext context) {
     _context = context;
@@ -50,6 +74,12 @@ class DrawerDefault extends StatelessWidget {
             onPressed: _navigateToRaiting,
             child: const Text("Raiting"),
           ),
+          _user != ''
+              ? TextButton(
+                  onPressed: setUser,
+                  child: const Text("Logout"),
+                )
+              : const Text(""),
         ],
       ),
     );

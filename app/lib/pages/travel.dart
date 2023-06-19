@@ -35,7 +35,7 @@ class _TavelState extends State<Tavel> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Viagens')),
-      drawer: DrawerDefault(),
+      drawer: const DrawerDefault(),
       // ignore: avoid_unnecessary_containers
       body: Padding(
         padding: const EdgeInsets.all(8),
@@ -52,15 +52,17 @@ class _TavelState extends State<Tavel> {
                     builder: (context) => TravelDetail(
                       description: local.description!,
                       image: local.image!,
+                      name : local.name!,
                       context: context,
                       start: _travels[index].startDate,
+                      end: _travels[index].endDate,
                     ),
                   ),
                 );
               },
               title: local.name!,
               description: local.description!,
-              imageUrl: local.image!,
+              imageUrl: local.image!, price: _travels[index].price,
             );
           },
         ),

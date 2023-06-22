@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-// import 'package:http/http.dart';
 import '../../constants.dart';
 import '../models/travel_model.dart';
 import 'package:http/http.dart' as http;

@@ -33,8 +33,9 @@ class TravelTile extends StatelessWidget {
     return ListTile(
         onTap: navigate,
         leading: SizedBox(
-          width: 200,
-          child: Image.network(imageUrl, fit: BoxFit.fill),
+          width: 100,
+          height: 100,
+          child: Image.network(imageUrl, fit: BoxFit.cover),
         ),
         title: SizedBox(
           width: 140,

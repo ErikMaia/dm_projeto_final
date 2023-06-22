@@ -26,3 +26,4 @@ insert into Local(Name,Description,image) values(
 
 select * from Local; 
 select * from Users;
+select * from Reservation;

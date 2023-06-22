@@ -2,10 +2,11 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:projeto_final/Data/datasources/reservation_data.dart';
+import 'package:projeto_final/Data/models/reservation_model.dart';
+import 'package:projeto_final/Data/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:projeto_final/constants.dart';
 
 class TravelDetail extends StatelessWidget {
   final String description;
@@ -13,6 +14,7 @@ class TravelDetail extends StatelessWidget {
   final DateTime start;
   final DateTime end;
   final String name;
+  final int id;
   BuildContext context;
   TravelDetail({
     Key? key,
@@ -21,6 +23,7 @@ class TravelDetail extends StatelessWidget {
     required this.start,
     required this.end,
     required this.name,
+    required this.id,
     required this.context,
   }) : super(key: key);
 
@@ -31,7 +34,9 @@ class TravelDetail extends StatelessWidget {
     if (user == null) {
       navigator.popAndPushNamed('login');
     }
-    http.post(Uri.parse(Constants.travelUrl));
+    var userId = UserModel.fromJson(user!).userId;
+    var reservation = ReservationModel(travelId: id, user: userId);
+    await ReservationData.create(reservation);
     navigator.popAndPushNamed('reservation');
   }
 

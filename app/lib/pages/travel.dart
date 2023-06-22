@@ -50,6 +50,7 @@ class _TavelState extends State<Tavel> {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => TravelDetail(
+                      id: _travels[index].travelId!,
                       description: local.description!,
                       image: local.image!,
                       name : local.name!,

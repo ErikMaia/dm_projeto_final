@@ -3,22 +3,25 @@ import 'dart:convert';
 
 class ReservationModel {
   int? reservationId;
-
+  int? local;
   int? travelId;
   int? user;
   ReservationModel({
     this.reservationId,
+    this.local,
     this.travelId,
     this.user,
   });
 
   ReservationModel copyWith({
     int? reservationId,
+    int? local,
     int? travelId,
     int? user,
   }) {
     return ReservationModel(
       reservationId: reservationId ?? this.reservationId,
+      local: local ?? this.local,
       travelId: travelId ?? this.travelId,
       user: user ?? this.user,
     );
@@ -27,6 +30,7 @@ class ReservationModel {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'reservationId': reservationId,
+      'local': local,
       'travelId': travelId,
       'user': user,
     };
@@ -35,7 +39,7 @@ class ReservationModel {
   factory ReservationModel.fromMap(Map<String, dynamic> map) {
     return ReservationModel(
       reservationId: map['reservationId'] != null ? map['reservationId'] as int : null,
-      travelId: map['travelId'] != null ? map['travelId'] as int : null,
+      travelId: map['travelId'] != null ? map['travelUser'] as int : null,
       user: map['user'] != null ? map['user'] as int : null,
     );
   }
@@ -45,7 +49,9 @@ class ReservationModel {
   factory ReservationModel.fromJson(String source) => ReservationModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'ReservationModel(reservationId: $reservationId, travelId: $travelId, user: $user)';
+  String toString() {
+    return 'ReservationModel(reservationId: $reservationId, local: $local, travelId: $travelId, user: $user)';
+  }
 
   @override
   bool operator ==(covariant ReservationModel other) {
@@ -53,10 +59,16 @@ class ReservationModel {
   
     return 
       other.reservationId == reservationId &&
+      other.local == local &&
       other.travelId == travelId &&
       other.user == user;
   }
 
   @override
-  int get hashCode => reservationId.hashCode ^ travelId.hashCode ^ user.hashCode;
+  int get hashCode {
+    return reservationId.hashCode ^
+      local.hashCode ^
+      travelId.hashCode ^
+      user.hashCode;
+  }
 }

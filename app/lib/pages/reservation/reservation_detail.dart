@@ -4,7 +4,8 @@ import 'package:projeto_final/widget/drawer_default.dart';
 
 import 'package:projeto_final/widget/passaport.dart';
 
-import '../styles/styles.dart';
+import '../../styles/styles.dart';
+
 
 class ReservationDetails extends StatelessWidget {
   const ReservationDetails({

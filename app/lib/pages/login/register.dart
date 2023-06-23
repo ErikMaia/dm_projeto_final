@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto_final/Data/datasources/user_data.dart';
 import 'package:projeto_final/widget/button_default.dart';
 
-import '../styles/styles.dart';
+import '../../styles/styles.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});

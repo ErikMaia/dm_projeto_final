@@ -4,7 +4,8 @@ import 'package:projeto_final/styles/styles.dart';
 import 'package:projeto_final/widget/drawer_default.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../Data/datasources/reservation_data.dart';
+import '../../Data/datasources/reservation_data.dart';
+
 
 class TravelManegegementDetail extends StatefulWidget {
   const TravelManegegementDetail({

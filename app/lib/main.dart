@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_final/pages/login.dart';
 import 'package:projeto_final/pages/rating.dart';
-import 'package:projeto_final/pages/register.dart';
-import 'package:projeto_final/pages/reservation.dart';
-import 'package:projeto_final/pages/travel_tracking.dart';
+import 'package:projeto_final/pages/login/register.dart';
 
-import 'pages/travel.dart';
-import 'pages/travel_management.dart';
+import 'pages/login/login.dart';
+import 'pages/reservation/reservation.dart';
+import 'pages/travel/travel.dart';
+import 'pages/travel/travel_management.dart';
+import 'pages/travel/travel_tracking.dart';
 
 void main() {
   runApp(const MyApp());

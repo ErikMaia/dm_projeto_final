@@ -1,34 +1,41 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:projeto_final/Data/datasources/reservation_data.dart';
-import 'package:projeto_final/Data/datasources/travel_data.dart';
-import 'package:projeto_final/Data/models/reservation_model.dart';
-import 'package:projeto_final/Data/models/travel_model.dart';
-import 'package:projeto_final/pages/reservation_detail.dart';
-import 'package:projeto_final/widget/drawer_default.dart';
-import 'package:projeto_final/widget/travel_tile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../Data/datasources/local_data.dart';
-import '../Data/models/local_model.dart';
-import '../Data/models/user_model.dart';
-import 'no_auth.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
+import 'package:projeto_final/widget/drawer_default.dart';
+import 'package:projeto_final/widget/travel_tile.dart';
 
-// ignore: must_be_immutable
-class Reservation extends StatefulWidget {
-  const Reservation({super.key});
+import '../../Data/datasources/local_data.dart';
+import '../../Data/datasources/reservation_data.dart';
+import '../../Data/datasources/travel_data.dart';
+import '../../Data/models/local_model.dart';
+import '../../Data/models/reservation_model.dart';
+import '../../Data/models/travel_model.dart';
+import '../../Data/models/user_model.dart';
+import '../login/no_auth.dart';
+import '../reservation/reservation_detail.dart';
+
+
+class TavelManagement extends StatefulWidget {
+  const TavelManagement({super.key});
+
+
 
   @override
-  State<Reservation> createState() => _ReservationState();
+  State<TavelManagement> createState() => _TavelManagementState();
 }
 
-class _ReservationState extends State<Reservation> {
+class _TavelManagementState extends State<TavelManagement> {
   BuildContext? _context;
+
   UserModel? user;
+
   List<ReservationModel> _reservation = [];
+
   List<TravelModel> _travel = [];
+
   List<LocalModel> _local = [];
 
   void _navigateToDetails(String name, String destination, String origens,

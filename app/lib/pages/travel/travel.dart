@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:projeto_final/Data/datasources/travel_data.dart';
 import 'package:projeto_final/Data/models/local_model.dart';
 import 'package:projeto_final/Data/models/travel_model.dart';
-import 'package:projeto_final/pages/travel_detail.dart';
 import 'package:projeto_final/widget/drawer_default.dart';
 import 'package:projeto_final/widget/travel_tile.dart';
-
-import '../Data/datasources/local_data.dart';
+import '../../Data/datasources/local_data.dart';
+import 'travel_detail.dart';
 
 class Tavel extends StatefulWidget {
   const Tavel({super.key});

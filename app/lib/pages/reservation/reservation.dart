@@ -79,13 +79,10 @@ class _ReservationState extends State<Reservation> {
           itemCount: _reservation.length,
           itemBuilder: (context, index) {
             var travel = _travel
-                .firstOrNull;
-            if (travel == null) {
-              return Container();
-            }
+                .firstWhere((element) => element.travelId == _reservation[index].reservationTravel);
             var local = _local
                 //.where((t) => t.localId == travel.positionDestination)
-                .first;
+                .firstWhere((element) => element.localId == travel.positionDestination);
             return TravelTile(
               onPressed: () {
                 _navigateToDetails(user!.name!, local.name!, 'Medianeira',

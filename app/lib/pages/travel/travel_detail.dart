@@ -35,7 +35,7 @@ class TravelDetail extends StatelessWidget {
       navigator.popAndPushNamed('login');
     }
     var userId = UserModel.fromJson(user!).userId;
-    var reservation = ReservationModel(travelId: id, user: userId);
+    var reservation = ReservationModel(reservationTravel: id, reservationUser: userId!, reservationId: 0);
     await ReservationData.create(reservation);
     navigator.popAndPushNamed('reservation');
   }

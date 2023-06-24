@@ -9,8 +9,9 @@ import '../../constants.dart';
 class ReservationData {
   static Future<bool> create(ReservationModel reservation) async {
     var body = reservation.toJson();
-    // "{"reservationId":null,"travelId":1,"user":3}"
+    print(body);
     var response = await http.post(Uri.parse(Constants.reservationUrl),body: body);
+    print(response.statusCode);
     if(response.statusCode == 200) {
       return true;
     }

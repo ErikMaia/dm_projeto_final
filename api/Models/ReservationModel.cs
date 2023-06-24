@@ -9,11 +9,11 @@ public class ReservationModel
     [Key]
     public int? ReservationId { get; set; }
 
-    [ForeignKey("LocalId")]
-    public int LocalTravelId { get; set; }
+    [ForeignKey("TravelId")]
+    public int ReservationTravel { get; set; }
     public TravelModel? Travel { get; set; }
-    
+
     [ForeignKey("UserId")]
-    public int TravelUser { get; set; }
+    public int ReservationUser { get; set; }
     public UserModel? User { get; set; }
 }

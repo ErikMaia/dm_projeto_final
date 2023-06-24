@@ -48,6 +48,7 @@ class TravelModel {
   }
 
   factory TravelModel.fromMap(Map<String, dynamic> map) {
+    print(map);
     return TravelModel(
       travelId: map['travelId'] != null ? map['travelId'] as int : null,
       startDate: DateTime.parse(map['startDate']),

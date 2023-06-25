@@ -8,8 +8,8 @@ import '../../constants.dart';
 
 class ReservationData {
   static Future<bool> create(ReservationModel reservation) async {
-    var body = reservation.toJson();
-    print(body);
+    var body = reservation.toMap();
+  
     var response = await http.post(Uri.parse(Constants.reservationUrl),body: body);
     print(response.statusCode);
     if(response.statusCode == 200) {

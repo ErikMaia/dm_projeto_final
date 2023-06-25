@@ -36,6 +36,7 @@ public class TravelController : ControllerBase
         {
             var travel = new TravelModel()
             {
+                TravelLocalId = (int)dto.positionDestination!,
                 endDate = dto.endDate,
                 positionDestination = _context.Local!.Find(dto.positionDestination),
                 startDate = dto.startDate,

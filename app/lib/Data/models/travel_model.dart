@@ -48,15 +48,16 @@ class TravelModel {
   }
 
   factory TravelModel.fromMap(Map<String, dynamic> map) {
-    print(map);
-    return TravelModel(
+    var travelModel = TravelModel(
       travelId: map['travelId'] != null ? map['travelId'] as int : null,
       startDate: DateTime.parse(map['startDate']),
       endDate: DateTime.parse(map['endDate']),
       positionOrigen: map['positionOrigen'] != null ? map['positionOrigen'] as int : null,
-      positionDestination: map['positionDestination'] != null ? map['positionDestination'] as int : null,
+      positionDestination: map['travelLocalId'] != null ? map['travelLocalId'] as int : null,
       price: double.parse(map['price'].toString()) ,
     );
+    print(travelModel);
+    return travelModel;
   }
 
   String toJson() => json.encode(toMap());

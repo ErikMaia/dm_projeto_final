@@ -41,28 +41,30 @@ class _TavelState extends State<Tavel> {
         child: ListView.builder(
           itemCount: _travels.length,
           itemBuilder: (context, index) {
+            var travel = _travels[index];
+            print(travel);
             var local = _locals
-                .where((l) => (l.localId == _travels[index].travelId))
-                .first;
+                // .where((l) => (l.localId == _travels[index].travelId))
+                .firstWhere((element) => element.localId == travel.positionDestination);
             return TravelTile(
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => TravelDetail(
-                      id: _travels[index].travelId!,
+                      id: travel.travelId!,
                       description: local.description!,
                       image: local.image!,
                       name : local.name!,
                       context: context,
-                      start: _travels[index].startDate,
-                      end: _travels[index].endDate,
+                      start: travel.startDate,
+                      end: travel.endDate,
                     ),
                   ),
                 );
               },
               title: local.name!,
               description: local.description!,
-              imageUrl: local.image!, price: _travels[index].price,
+              imageUrl: local.image!, price: travel.price,
             );
           },
         ),

@@ -40,7 +40,7 @@ public class TravelController : ControllerBase
                 endDate = dto.endDate,
                 positionDestination = _context.Local!.Find(dto.positionDestination),
                 startDate = dto.startDate,
-                Price = 2000
+                Price = dto.price 
             };
             _context.Travel!.Add(travel);
             _context.SaveChanges();

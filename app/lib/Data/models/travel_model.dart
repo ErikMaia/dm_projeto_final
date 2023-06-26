@@ -56,7 +56,6 @@ class TravelModel {
       positionDestination: map['travelLocalId'] != null ? map['travelLocalId'] as int : null,
       price: double.parse(map['price'].toString()) ,
     );
-    print(travelModel);
     return travelModel;
   }
 

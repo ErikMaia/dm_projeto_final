@@ -1,11 +1,10 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+
+
+// ignore: must_be_immutable
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'package:projeto_final/widget/drawer_default.dart';
-import 'package:projeto_final/widget/travel_tile.dart';
 
 import '../../Data/datasources/local_data.dart';
 import '../../Data/datasources/reservation_data.dart';
@@ -14,46 +13,36 @@ import '../../Data/models/local_model.dart';
 import '../../Data/models/reservation_model.dart';
 import '../../Data/models/travel_model.dart';
 import '../../Data/models/user_model.dart';
+import '../../widget/drawer_default.dart';
+import '../../widget/travel_tile.dart';
 import '../login/no_auth.dart';
-import '../reservation/reservation_detail.dart';
+import 'travel_manegement_detail.dart';
 
-
-class TavelManagement extends StatefulWidget {
-  const TavelManagement({super.key});
-
-
+class TravelManagement extends StatefulWidget {
+  const TravelManagement({super.key});
 
   @override
-  State<TavelManagement> createState() => _TavelManagementState();
+  State<TravelManagement> createState() => _TravelManagementState();
 }
 
-class _TavelManagementState extends State<TavelManagement> {
+class _TravelManagementState extends State<TravelManagement> {
   BuildContext? _context;
-
   UserModel? user;
-
   List<ReservationModel> _reservation = [];
-
   List<TravelModel> _travel = [];
-
   List<LocalModel> _local = [];
 
-  void _navigateToDetails(String name, String destination, String origens,
-      DateTime start, DateTime end) {
+  void _navigateToDetails(int id) {
     Navigator.of(_context!).push(
       MaterialPageRoute(
-        builder: (context) => ReservationDetails(
-          name: name,
-          destination: destination,
-          origen: origens,
-          start: start,
-          end: end,
+        builder: (context) => TravelManegegementDetail(
+          id:id
         ),
       ),
     );
   }
 
-  Future<void> getReservationDetails() async {
+  Future<void> getTravelManagementDetails() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var userString = prefs.getString("userId") ?? '';
     if (userString != '') {
@@ -68,7 +57,7 @@ class _TavelManagementState extends State<TavelManagement> {
   @override
   void initState() {
     super.initState();
-    getReservationDetails();
+    getTravelManagementDetails();
   }
 
   @override
@@ -78,7 +67,7 @@ class _TavelManagementState extends State<TavelManagement> {
     }
     _context = context;
     return Scaffold(
-      appBar: AppBar(title: const Text('Reservas')),
+      appBar: AppBar(title: const Text('Gerenciamento de Viagens')),
       drawer: const DrawerDefault(),
       // ignore: avoid_unnecessary_containers
       body: Padding(
@@ -86,18 +75,15 @@ class _TavelManagementState extends State<TavelManagement> {
         child: ListView.builder(
           itemCount: _reservation.length,
           itemBuilder: (context, index) {
+            var reservation = _reservation[index];
             var travel = _travel
-                .firstOrNull;
-            if (travel == null) {
-              return Container();
-            }
+                .firstWhere((element) => element.travelId == reservation.reservationTravel);
             var local = _local
                 //.where((t) => t.localId == travel.positionDestination)
-                .first;
+                .firstWhere((element) => element.localId == travel.positionDestination);
             return TravelTile(
               onPressed: () {
-                _navigateToDetails(user!.name!, local.name!, 'Medianeira',
-                    travel.startDate, travel.endDate);
+                _navigateToDetails(reservation.reservationId);
               },
               title: local.name!,
               description: local.description!,
@@ -110,3 +96,4 @@ class _TavelManagementState extends State<TavelManagement> {
     );
   }
 }
+

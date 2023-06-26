@@ -8,18 +8,22 @@ import '../../constants.dart';
 
 class ReservationData {
   static Future<bool> create(ReservationModel reservation) async {
-    var body = reservation.toMap();
-  
-    var response = await http.post(Uri.parse(Constants.reservationUrl),body: body);
-    print(response.statusCode);
-    if(response.statusCode == 200) {
+    var body = jsonEncode(reservation.toMap()); // Converter o mapa em uma String JSON
+    var response = await http.post(
+      Uri.parse(Constants.reservationUrl),
+      headers: {'Content-Type': 'application/json'}, // Definir o cabeçalho Content-Type como application/json
+      body: body,
+    );
+
+    if (response.statusCode == 200) {
       return true;
     }
     return false;
   }
 
   static Future<void> remove(int id) async {
-    await http.delete(Uri.parse("${Constants.reservationUrl}/$id"));
+    var response = await http.delete(Uri.parse("${Constants.reservationUrl}/$id"));
+    print(response.statusCode);
   }
 
   static Future<List<ReservationModel>> getAll(int id) async {

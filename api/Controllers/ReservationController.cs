@@ -61,6 +61,7 @@ public class ReservationController : ControllerBase
         {
             var reserva = _context.Reservation!.Find(id);
             _context.Reservation.Remove(reserva!);
+            _context.SaveChanges();
             return Ok();
         }
         catch (Exception)

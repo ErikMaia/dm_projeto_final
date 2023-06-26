@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         // Reserva de viagens
         'reservation': (context) => const Reservation(),
         // Gerenciamento de reservas
-        'travel_management': (context) => const TavelManagement(),
+        'travel_management': (context) => const TravelManagement(),
         // Rastreamento de viagens
         'travel_tracking': (context) => const TravelTracking(),
         // Avaliação de viagens

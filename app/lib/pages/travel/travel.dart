@@ -42,9 +42,7 @@ class _TavelState extends State<Tavel> {
           itemCount: _travels.length,
           itemBuilder: (context, index) {
             var travel = _travels[index];
-            print(travel);
             var local = _locals
-                // .where((l) => (l.localId == _travels[index].travelId))
                 .firstWhere((element) => element.localId == travel.positionDestination);
             return TravelTile(
               onPressed: () {

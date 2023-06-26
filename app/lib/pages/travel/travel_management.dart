@@ -1,5 +1,3 @@
-
-
 // ignore: must_be_immutable
 import 'dart:convert';
 
@@ -33,10 +31,18 @@ class _TravelManagementState extends State<TravelManagement> {
   List<LocalModel> _local = [];
 
   void _navigateToDetails(int id) {
+    Future<void> remove(BuildContext context) async {
+      await ReservationData.remove(id);
+      Navigator.of(context).pop();
+      setState(() {});
+    }
+
     Navigator.of(_context!).push(
       MaterialPageRoute(
         builder: (context) => TravelManegegementDetail(
-          id:id
+          onDelete: () {
+            remove(context);
+          },
         ),
       ),
     );
@@ -76,11 +82,12 @@ class _TravelManagementState extends State<TravelManagement> {
           itemCount: _reservation.length,
           itemBuilder: (context, index) {
             var reservation = _reservation[index];
-            var travel = _travel
-                .firstWhere((element) => element.travelId == reservation.reservationTravel);
+            var travel = _travel.firstWhere(
+                (element) => element.travelId == reservation.reservationTravel);
             var local = _local
                 //.where((t) => t.localId == travel.positionDestination)
-                .firstWhere((element) => element.localId == travel.positionDestination);
+                .firstWhere(
+                    (element) => element.localId == travel.positionDestination);
             return TravelTile(
               onPressed: () {
                 _navigateToDetails(reservation.reservationId);
@@ -96,4 +103,3 @@ class _TravelManagementState extends State<TravelManagement> {
     );
   }
 }
-

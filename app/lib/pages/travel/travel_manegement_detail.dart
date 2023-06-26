@@ -1,21 +1,16 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:projeto_final/Data/datasources/reservation_data.dart';
 import 'package:projeto_final/widget/drawer_default.dart';
 
 class TravelManegegementDetail extends StatelessWidget {
-  final int id;
   final double height = 100;
   final String? title;
-  Future<void> remove(BuildContext context) async {
-    await ReservationData.remove(id);
-    Navigator.of(context).pop();
-  }
+  VoidCallback onDelete;
 
-  const TravelManegegementDetail({
+  TravelManegegementDetail({
     Key? key,
-    required this.id,
     this.title,
+    required this.onDelete,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -33,9 +28,7 @@ class TravelManegegementDetail extends StatelessWidget {
               height: height,
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {
-                  remove(context);
-                },
+                onPressed: onDelete,
                 child: const Text('CANCELAR'),
               ),
             ),
@@ -43,9 +36,7 @@ class TravelManegegementDetail extends StatelessWidget {
               width: double.infinity,
               height: height,
               child: ElevatedButton(
-                onPressed: () {
-                  remove(context);
-                },
+                onPressed: onDelete,
                 child: const Text('REMARCAR'),
               ),
             ),
@@ -53,9 +44,7 @@ class TravelManegegementDetail extends StatelessWidget {
               width: double.infinity,
               height: height,
               child: ElevatedButton(
-                onPressed: () {
-                  remove(context);
-                },
+                onPressed: onDelete,
                 child: const Text('REEMBOLSO'),
               ),
             ),

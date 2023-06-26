@@ -22,8 +22,7 @@ class ReservationData {
   }
 
   static Future<void> remove(int id) async {
-    var response = await http.delete(Uri.parse("${Constants.reservationUrl}/$id"));
-    print(response.statusCode);
+    await http.delete(Uri.parse("${Constants.reservationUrl}/$id"));
   }
 
   static Future<List<ReservationModel>> getAll(int id) async {

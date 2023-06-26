@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_final/widget/drawer_default.dart';
 
+// ignore: must_be_immutable
 class TravelManegegementDetail extends StatelessWidget {
   final double height = 100;
   final String? title;

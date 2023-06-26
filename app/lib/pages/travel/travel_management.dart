@@ -34,7 +34,7 @@ class _TravelManagementState extends State<TravelManagement> {
     Future<void> remove(BuildContext context) async {
       await ReservationData.remove(id);
       Navigator.of(context).pop();
-      setState(() {});
+      getTravelManagementDetails();
     }
 
     Navigator.of(_context!).push(

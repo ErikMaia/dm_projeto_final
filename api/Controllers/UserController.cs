@@ -1,6 +1,7 @@
 using api.DataBase;
 using api.DTOs;
 using api.Models;
+using Api.Utils;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers;
@@ -23,7 +24,7 @@ public class UserController : Controller
             UserId = dto.UserId,
             Name = dto.Name,
             Email = dto.Email,
-            Passwords = dto.Passwords,
+            Passwords = Crypto.criptograph(dto.Passwords!),
             Age = dto.Age
         };
 
@@ -44,7 +45,7 @@ public class UserController : Controller
     {
         string username = dto.Email!; 
         string password = dto.Passwords!;
-        var user = _context.Users!.First((u) => u.Email == username && u.Passwords == password);
+        var user = _context.Users!.First((u) => u.Email == username && u.Passwords == Crypto.criptograph(password));
         return Ok(user);
     }
 

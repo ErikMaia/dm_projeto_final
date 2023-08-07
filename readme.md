@@ -44,7 +44,9 @@ Navegue até o diretório do aplicativo Flutter dentro do projeto clonado:
 ```bash
 cd aplicativo-flutter
 ```
-
+```bash
+flutter run
+```
 
 Antes de executar o aplicativo Flutter, certifique-se de ter configurado corretamente o ambiente Flutter em seu sistema.
 

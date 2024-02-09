@@ -6,7 +6,7 @@ public class Crypto
     public static string criptograph(string password)
     {
         byte[] temporaryPassword = toBytes(password);
-        byte[] temporaryHash = new MD5CryptoServiceProvider().ComputeHash(temporaryPassword);
+        byte[] temporaryHash = new SHA512Managed().ComputeHash(temporaryPassword);
         return ByteArrayToString(temporaryHash);
     }
     private static byte[] toBytes(string password)
